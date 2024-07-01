@@ -2,7 +2,7 @@ import streamlit as st
 from hugchat import hugchat
 from hugchat.login import Login
 
-
+# Title
 st.title('Simple ChatBot')
 
 
@@ -26,7 +26,6 @@ for message in st.session_state.messages:
         st.write(message["content"])
 
 
-
 def generate_response(prompt_input, email, passwd):
     sign = Login(email, passwd)
     cookies = sign.login()
@@ -34,7 +33,6 @@ def generate_response(prompt_input, email, passwd):
     return chatbot.chat(prompt_input)
 
 
-# User-provided prompt
 if prompt := st.chat_input(disabled=not (hf_email and hf_pass)):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
