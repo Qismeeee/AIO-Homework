@@ -23,7 +23,7 @@ class SoftmaxStable(nn.Module):
         return x_exp / partition
 
 
-data = torch.Tensor([1, 2, 3])
+data = torch.Tensor([1, 2, 300000000])
 softmax = Softmax()
 output = softmax(data)
 print(output)
