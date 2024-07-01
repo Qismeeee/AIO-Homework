@@ -59,12 +59,10 @@ def main():
 
     if st.button("Compute"):
 
-        # compute levenshtein distance
         leven_distances = dict()
         for vocab in vocabs:
             leven_distances[vocab] = levenshtein_distance(word, vocab)
 
-        # sorted by distance
         sorted_distences = dict(
             sorted(leven_distances.items(), key=lambda item: item[1]))
         correct_word = list(sorted_distences.keys())[0]
