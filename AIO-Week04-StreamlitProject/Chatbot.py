@@ -2,10 +2,10 @@ import streamlit as st
 from hugchat import hugchat
 from hugchat.login import Login
 
-# App title
+
 st.title('Simple ChatBot')
 
-# Hugging Face Credentials
+
 with st.sidebar:
     st.title('Login HugChat')
     hf_email = st.text_input('Enter E-mail:')
@@ -16,7 +16,6 @@ with st.sidebar:
         st.success('Proceed to entering your prompt message!', icon='👉')
 
 
-# Store LLM generated responses
 if "messages" not in st.session_state.keys():
     st.session_state.messages = [
         {"role": "assistant", "content": "How may I help you?"}]
@@ -26,14 +25,11 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-# Function for generating LLM response
 
 
 def generate_response(prompt_input, email, passwd):
-    # Hugging Face Login
     sign = Login(email, passwd)
     cookies = sign.login()
-    # Create ChatBot
     chatbot = hugchat.ChatBot(cookies=cookies.get_dict())
     return chatbot.chat(prompt_input)
 
